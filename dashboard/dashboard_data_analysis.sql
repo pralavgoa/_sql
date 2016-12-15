@@ -49,3 +49,11 @@ ON parents.pid=tabap.ONTOLOGY_ID
 GROUP BY tabap.PARENT_ID) grandparents
 INNER JOIN DASH_ONTOLOGY
 ON DASH_ONTOLOGY.ID = grandparents.tabagp;
+-----------------------------------
+
+SELECT C_DIMCODE, count(C_DIMCODE) as count_years
+FROM DASH_ALL_SITES
+WHERE UCLA_COUNT > 0 AND UCI_COUNT > 0 AND UCSD_COUNT > 0
+GROUP BY C_DIMCODE
+HAVING count(C_DIMCODE) > 10
+ORDER BY count_years desc
